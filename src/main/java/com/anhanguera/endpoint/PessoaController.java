@@ -1,6 +1,6 @@
 package com.anhanguera.endpoint;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,7 +19,7 @@ public class PessoaController {
 			value="/list",
 			method=RequestMethod.GET
 	)
-	public ArrayList<PessoaEntity> list(
+	public List<PessoaEntity> list(
 			@RequestParam(
 					value="idPessoa", defaultValue="0"
 			) int id

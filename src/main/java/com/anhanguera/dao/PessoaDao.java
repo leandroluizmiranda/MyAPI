@@ -1,23 +1,30 @@
 package com.anhanguera.dao;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
+import com.anhanguera.dao.mapper.PessoaMapper;
 import com.anhanguera.entity.PessoaEntity;
 
-public class PessoaDao {
+@Repository
+public class PessoaDao extends BaseDao{
 
 	private String tableName = "Pessoa";
 	private String primaryKey = "idPessoa";
 	
-	public ArrayList<PessoaEntity> list(int id){
+	public List<PessoaEntity> list(int id){
+		List<PessoaEntity> result = new  ArrayList<PessoaEntity>();
 		String sql = "SELECT * FROM " + tableName + " ";
 		
-		if (id != 0)
+		if (id == 0){
+			result = jdbcTemplate.query(sql, new PessoaMapper());
+		}else{
 			sql += " WHERE " + primaryKey + "=?";
+			result = jdbcTemplate.query(sql, new PessoaMapper(), id);
+		}
 		
-		System.out.println(sql);
-		//Vai no banco e retorna a lista
-		
-		return new ArrayList<PessoaEntity>();
+		return result;
 	}
 }
