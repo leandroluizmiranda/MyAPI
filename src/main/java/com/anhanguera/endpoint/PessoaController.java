@@ -2,6 +2,7 @@ package com.anhanguera.endpoint;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,10 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.anhanguera.dao.PessoaDao;
 import com.anhanguera.entity.PessoaEntity;
 
-@RestController(value="/pessoa")
+@RestController
+@RequestMapping(value="/pessoa")
 public class PessoaController {
 
-	PessoaDao dao = new PessoaDao();
+	@Autowired
+	PessoaDao dao;
 	
 	@RequestMapping(
 			value="/list",
