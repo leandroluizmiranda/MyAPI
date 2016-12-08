@@ -49,4 +49,32 @@ public class PessoaDao extends BaseDao{
 				
 		return p;
 	}
+	// delete id
+	public boolean delete(int id){
+		
+		jdbcTemplate.update("delete from "+tableName+ " where " +primaryKey+" = ?",id);
+		return true;
+		
+	}// update
+	
+	public PessoaEntity update(int id,PessoaEntity p){
+		
+		
+	String sql = "UPDATE "+tableName+" set "+columns.get(0)+" =?,"+columns.get(1)+" =? where "+primaryKey+" =?";
+	jdbcTemplate.update(sql, p.getNome(),p.getIdade(),id);
+	
+	p.setIdPessoa(id);
+	return p;
+		
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
 }

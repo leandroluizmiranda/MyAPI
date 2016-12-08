@@ -2,7 +2,10 @@ package com.anhanguera.endpoint;
 
 import java.util.List;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -43,6 +46,30 @@ public class PessoaController {
 	public PessoaEntity insert(@RequestBody PessoaEntity p){
 		return dao.insert(p);
 	}
+	
+	@RequestMapping(value="/delete",
+			method=RequestMethod.DELETE
+	)
+	
+	public boolean delete( @RequestParam(value="idPessoa", defaultValue="0"
+	)int id){
+		
+		return dao.delete(id);
+		
+     }
+	
+	
+	@RequestMapping(value="/update",
+			method=RequestMethod.PUT)
+	
+	public PessoaEntity update(@PathVariable("id") int id, @RequestBody PessoaEntity p){
+		return dao.update(id, p);
+	}
+	
+	
+	
+	
+	
 	
 	
 }
